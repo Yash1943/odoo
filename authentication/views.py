@@ -110,11 +110,11 @@ def signup(request):
         
         except ValidationError as e:
             messages.error(request, e.message)
-            return redirect('home')
+            return redirect('signup')
         
         except IntegrityError as e:
             messages.error(request, "An error occurred while processing your request. Please try again later.")
-            return redirect('home')
+            return redirect('signup')
     
     return render(request, "authentication/signup.html")
 
@@ -152,7 +152,7 @@ def signin(request):
                 return redirect('admin1')  # Redirect regular users to home page
         else:
             messages.error(request, "Bad Credentials!!")
-            return redirect('home')
+            return redirect('signin')
     return render(request, "authentication/signin.html")
 
 
@@ -165,8 +165,9 @@ def get_sports(request):
     if request.method == "POST":
         id = request.POST.get('id')
         sport_name = request.POST.get('sport_name')
-        print(id , sport_name)
-        ins = Sport(id=id, sport_name=sport_name)
+        price = request.POST.get('price')
+        print(id , sport_name, price)
+        ins = Sport(id=id, sport_name=sport_name, price=price)
         ins.save()
         print("The Sport is save into the DB")
         csports = Sport.objects.all()
@@ -205,9 +206,9 @@ def delete_sport(request, id):
         messages.error(request, "Invalid request method")
         return redirect('get_sports')
     
-def createsession_page(request, sport_id,sport_name):
+def createsession_page(request, sport_id,sport_name, price):
     # Logic to render the recommendation page
-    return render(request, 'createsession.html',  {'sport_id': sport_id, 'sport_name':sport_name})    
+    return render(request, 'createsession.html',  {'sport_id': sport_id, 'sport_name': sport_name, 'price':price})    
 
 def create_session(request):
     if request.method == 'POST':
@@ -215,19 +216,21 @@ def create_session(request):
         number_of_teams = request.POST.get('numberofTeams')
         time = request.POST.get('time')
         sport_name = request.POST.get('sport_name')
+        price = request.POST.get('price')
 
         # Save session data to the database
         session = Session.objects.create(
             sport_name=sport_name,
             venue=venue,
             number_of_teams=number_of_teams,
-            time=time
+            time=time,
+            price=price,
         )
-        return redirect('recommendation', sport_name=sport_name, session_id=session.id)
+        return redirect('recommendation', sport_name=sport_name, session_id=session.id, price=price)
 
     return render(request, 'createsession.html')
 
-def recommendation(request,sport_name,session_id):
+def recommendation(request,sport_name,session_id,price):
     # Retrieve all sessions from the database
     sessions = Session.objects.all()
     # session_teams_range = range(1, sessions.number_of_teams + 1)
@@ -262,3 +265,4 @@ def choice(request, sport_id=None):
     except Exception as e:
         logger.error(f"Error retrieving session: {e}")
         return render(request, "choice.html", {"session": None})
+    

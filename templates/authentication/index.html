@@ -8,24 +8,67 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet" />
     <style>
-      .container {
-        @apply flex flex-col items-center justify-center h-screen;
+      /* Define keyframes for slideIn */
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-50%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
       }
 
-      .your {
-        @apply text-black text-3xl font-bold rotate-90;
+      /* Define keyframes for slideUp */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(50%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      .manage {
-        @apply text-black text-4xl font-bold;
+      /* Apply animation to slide-in elements */
+      .slide-in {
+        opacity: 0;
+        transform: translateX(-50%);
+        animation: slideIn 1s ease-out forwards;
       }
 
-      .infrastructure {
-        @apply text-black text-4xl font-bold;
+      /* Apply animation to slide-up elements */
+      .slide-up {
+        opacity: 0;
+        transform: translateY(50%);
+        animation: slideUp 1s ease-out forwards;
       }
 
-      .sports {
-        @apply text-7xl font-bold text-transparent bg-gradient-to-r from-purple-500 to-pink-500;
+      /* Apply animation with delays to text */
+      .slide-in:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .slide-in:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .slide-in:nth-child(3) {
+        animation-delay: 1s;
+      }
+
+      .slide-in:nth-child(4) {
+        animation-delay: 1.5s;
+      }
+
+      /* Apply animation to the image with a delay */
+      .slide-in-image {
+        opacity: 0;
+        transform: translateX(-50%);
+        animation: slideIn 1s ease-out forwards;
+        animation-delay: 2s; /* Adjust delay as needed */
       }
     </style>
   </head>
@@ -45,14 +88,14 @@
               <li><a href="#" class="text-gray-600 hover:text-gray-800">Contact</a></li>
               <li>
                 <a
-              href="/signup"
+                  href="/signup"
                   class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md"
                   >Sign Up</a
                 >
               </li>
               <li>
                 <a
-              href="/signin"
+                  href="/signin"
                   class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md"
                   >Sign In</a
                 >
@@ -66,15 +109,15 @@
       <div class="container mx-auto py-16 m-20">
         <div
           class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
-          <div class="container text-center text-5xl md:text-left w-1/2 font-bold">
-            <div class="text">Your</div>
-            <div class="manage">Manage</div>
-            <div class="infrastructure">Infrastructure</div>
-            <div class="sports">Sports</div>
+          <div class="text-center text-5xl md:text-left w-1/2 font-bold">
+            <h1 class="slide-in">Your</h1>
+            <div class="slide-in">Sports</div>
+            <div class="slide-in">Infrastructure</div>
+            <div class="slide-in">Manage</div>
           </div>
           <div>
             <img
-              class="box-content h-80 w-80 p-4 border--backdrop-hue-rotate-15 rounded-3xl"
+              class="box-content h-80 w-80 p-4 border--backdrop-hue-rotate-15 rounded-3xl slide-in-image"
               src="/static/sports-infrastructure-management-.png" />
           </div>
         </div>
