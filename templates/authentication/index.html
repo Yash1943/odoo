@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sports Infrastructure Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <style>
+      /* Define keyframes for slideIn */
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-50%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Define keyframes for slideUp */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(50%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Apply animation to slide-in elements */
+      .slide-in {
+        opacity: 0;
+        transform: translateX(-50%);
+        animation: slideIn 1s ease-out forwards;
+      }
+
+      /* Apply animation to slide-up elements */
+      .slide-up {
+        opacity: 0;
+        transform: translateY(50%);
+        animation: slideUp 1s ease-out forwards;
+      }
+
+      /* Apply animation with delays to text */
+      .slide-in:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .slide-in:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .slide-in:nth-child(3) {
+        animation-delay: 1s;
+      }
+
+      .slide-in:nth-child(4) {
+        animation-delay: 1.5s;
+      }
+
+      /* Apply animation to the image with a delay */
+      .slide-in-image {
+        opacity: 0;
+        transform: translateX(-50%);
+        animation: slideIn 1s ease-out forwards;
+        animation-delay: 2s; /* Adjust delay as needed */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mx-auto py-4">
+      <!-- Header -->
+      <header class="bg-gray-100 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+          <h1 class="text-2xl font-bold text-gray-800">
+            <a href="/">Sports Infrastructure Management</a>
+          </h1>
+          <nav>
+            <ul class="flex space-x-6">
+              <li><a href="#" class="text-gray-600 hover:text-gray-800">Home</a></li>
+              <li><a href="#" class="text-gray-600 hover:text-gray-800">Sports</a></li>
+              <li><a href="#" class="text-gray-600 hover:text-gray-800">About</a></li>
+              <li><a href="#" class="text-gray-600 hover:text-gray-800">Contact</a></li>
+              <li>
+                <a
+                  href="/signup"
+                  class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md"
+                  >Sign Up</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/signin"
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md"
+                  >Sign In</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <div class="container mx-auto py-16 m-20">
+        <div
+          class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
+          <div class="text-center text-5xl md:text-left w-1/2 font-bold">
+            <h1 class="slide-in">Your</h1>
+            <div class="slide-in">Sports</div>
+            <div class="slide-in">Infrastructure</div>
+            <div class="slide-in">Manage</div>
+          </div>
+          <div>
+            <img
+              class="box-content h-80 w-80 p-4 border--backdrop-hue-rotate-15 rounded-3xl slide-in-image"
+              src="/static/sports-infrastructure-management-.png" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 py-4 text-center text-white">
+        <p>&copy; 2023 Sports Infrastructure Management</p>
+      </footer>
+    </div>
+  </body>
+</html>
